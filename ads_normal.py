@@ -10,6 +10,7 @@ async def on_ready():
 	print("Running ADS Script.")
 	blocked_users = config.ads
 	for guild in bot.guilds:
+		blocked_users = config.users
 		if guild.owner_id in blocked_users:
 			await guild.leave()
 			ss = get(bot.guilds, id=config.serverid)
@@ -19,7 +20,7 @@ async def on_ready():
 
 @bot.event
 async def on_guild_join(self, guild):
-	if guild.owner_id in config.ads:
+	if guild.owner_id in config.users:
 		await guild.leave()
 		ss = get(bot.guilds, id=config.serverid)
 		log = get(ss.text_channels, id=config.log)
@@ -31,7 +32,7 @@ async def on_guild_join(self, guild):
 @commands.is_owner()
 async def run_ads(self, ctx):
 	await ctx.send("Running ADS Script.")
-	blocked_users = config.ads
+	blocked_users = config.users
 	for guild in bot.guilds:
 		if guild.owner_id in blocked_users:
 			await guild.leave()

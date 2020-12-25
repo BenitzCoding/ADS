@@ -11,5 +11,9 @@
     "log": [
         +++
     ],
+    // Replace the +++ with the user that is Dummy Servering you.
+    "users": [
+        +++
+    ],
     "token": "Your Token"
 }

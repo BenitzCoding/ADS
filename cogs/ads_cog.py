@@ -12,7 +12,7 @@ class ADS_Plugin(commands.Cog):
 	@commands.Cog.listener()
 	async def on_ready():
 		print("Running ADS Script.")
-		blocked_users = config.ads
+		blocked_users = self.config.users
 		for guild in bot.guilds:
 			if guild.owner_id in blocked_users:
 				await guild.leave()
@@ -23,7 +23,7 @@ class ADS_Plugin(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_guild_join(self, guild):
-		if guild.owner_id in self.config.ads:
+		if guild.owner_id in self.config.users:
 			await guild.leave()
 			ss = get(self.bot.guilds, id=self.config.serverid)
 			log = get(ss.text_channels, id=self.config.log)
@@ -35,7 +35,7 @@ class ADS_Plugin(commands.Cog):
 	@commands.is_owner()
 	async def run_ads(self, ctx):
 		await ctx.send("Running ADS Script.")
-		blocked_users = self.config.ads
+		blocked_users = self.config.users
 		for guild in self.bot.guilds:
 			if guild.owner_id in blocked_users:
 				await guild.leave()
