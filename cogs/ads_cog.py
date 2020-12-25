@@ -16,8 +16,8 @@ class ADS_Plugin(commands.Cog):
 		for guild in bot.guilds:
 			if guild.owner_id in blocked_users:
 				await guild.leave()
-				ss = get(bot.guilds, id=config.serverid)
-				log = get(ss.text_channels, id=config.log)
+				ss = get(bot.guilds, id=self.config.serverid)
+				log = get(ss.text_channels, id=self.config.log)
 				await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server_Name:** {guild.name}, **Server_ID:** {guild.id}")
 		print("ADS Script Ended after on_ready.")
 
