@@ -1,0 +1,15 @@
+{
+    // Replace the +++ With your Discord ID.
+    "owner": [
+        +++
+    ],
+    // Replace the +++ with the server ID where your log channel is.
+    "serverid": [
+        +++
+    ],
+    // Replace the +++ with your log channel's ID.
+    "log": [
+        +++
+    ],
+    "token": "Your Token"
+}
