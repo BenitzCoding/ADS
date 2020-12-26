@@ -19,7 +19,7 @@ async def on_ready():
 	print("ADS Script Ended after on_ready.")
 
 @bot.event
-async def on_guild_join(self, guild):
+async def on_guild_join(guild):
 	if guild.owner_id in config.users:
 		await guild.leave()
 		ss = get(bot.guilds, id=config.serverid)
@@ -30,7 +30,7 @@ async def on_guild_join(self, guild):
 
 @bot.command()
 @commands.is_owner()
-async def run_ads(self, ctx):
+async def run_ads(ctx):
 	await ctx.send("Running ADS Script.")
 	blocked_users = config.users
 	for guild in bot.guilds:

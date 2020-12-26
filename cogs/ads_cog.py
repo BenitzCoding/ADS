@@ -10,10 +10,10 @@ class ADS_Plugin(commands.Cog):
 		print('"ADS_Plugin" cog loaded')
 
 	@commands.Cog.listener()
-	async def on_ready():
+	async def on_ready(self):
 		print("Running ADS Script.")
 		blocked_users = self.config.users
-		for guild in bot.guilds:
+		for guild in self.bot.guilds:
 			if guild.owner_id in blocked_users:
 				await guild.leave()
 				ss = get(bot.guilds, id=self.config.serverid)
