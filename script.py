@@ -2,7 +2,7 @@
 # You still need to fill in everything in config.json
 import discord
 from utils import default
-from discord.utls import get
+from discord.utils import get
 from discord.ext import discord
 
 config = default.get('./config')
