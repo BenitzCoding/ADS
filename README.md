@@ -16,7 +16,8 @@ pip install -U -r requirements.txt
 If you are using ADS just for once, then you can fill in all the `config.json` file with your Discord ID, Log Channel ID, Log Server ID, and The ID of the user who is Dummy Servering your bot, and then if you insert your token and run it, it should ADS your bot. 
 If you are using a bot with cogs you can use the cog version of the script or use the normal version of the script with no cog.
 
-**Sample File:**
+### Sample File:
+If you don't know how to copy IDs please refer to [How to copy IDs - Discord](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-).
 ```json
 {
 	"owners": [
