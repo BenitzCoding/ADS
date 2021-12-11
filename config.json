@@ -1,19 +1,11 @@
 {
-    // Replace the +++ With your Discord ID.
-    "owner": [
-        +++
-    ],
-    // Replace the +++ with the server ID where your log channel is.
-    "serverid": [
-        +++
-    ],
-    // Replace the +++ with your log channel's ID.
-    "log": [
-        +++
-    ],
-    // Replace the +++ with the user that is Dummy Servering you.
-    "users": [
-        +++
-    ],
-    "token": "Your Token"
+	"owners": [
+		000000000000000000
+	],
+	"serverid": 000000000000000000,
+	"log": 000000000000000000,
+	"users": [
+		000000000000000000, 000000000000000000, 000000000000000000
+	],
+	"token": "ODAxNzY5MjM4MjQ3MTEyNzI1.YAlfyg.dDutrJEbTRGLPPEecoBl8zqZifk"
 }
