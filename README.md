@@ -33,7 +33,7 @@ If you don't know how to copy IDs please refer to [How to copy IDs - Discord](ht
 ```
 
 # Debug
-If there are any problems or any bugs in the script please contact Benitz Original#1317 and join [Discord.py For Beginner](https://discord.gg/qUAdJfASbD) server.
+If there are any problems or any bugs in the script please contact BenitzCoding#1317 and join [Senarc](https://senarc.org/discord)'s Discord server.
 
 # Conclusion
 We hope your bot is ADS, and have a nice day I hope I helped you You can contact me when needed.
