@@ -1,5 +1,6 @@
 import discord
 from utils import default
+from cool_utils import Terminal
 from discord.utils import get
 from discord.ext import commands
 
@@ -9,40 +10,46 @@ class ADS_Plugin(commands.Cog):
 		self.config = default.get("./config.json")
 		print('"ADS_Plugin" cog loaded')
 
-	@commands.Cog.listener()
-	async def on_ready(self):
-		print("Running ADS Script.")
+	@commands.Cog.listener('on_ready')
+	async def startup_scan(self):
+		Terminal.display("Running Startup ADS Script.")
 		blocked_users = self.config.users
 		for guild in self.bot.guilds:
 			if guild.owner_id in blocked_users:
-				await guild.leave()
-				ss = get(bot.guilds, id=self.config.serverid)
+				ss = get(self.bot.guilds, id=self.config.serverid)
 				log = get(ss.text_channels, id=self.config.log)
-				await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server_Name:** {guild.name}, **Server_ID:** {guild.id}")
-		print("ADS Script Ended after on_ready.")
+				owner = await self.bot.fetch_user(guild.owner_id)
+				await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server:** {guild.name}(`{guild.id}`), **Owner:** `{owner.name}#{owner.discriminator}`(`{owner.id}`)")
+				await guild.leave()
+		Terminal.display("ADS Script has been executed successfully.")
 
-	@commands.Cog.listener()
-	async def on_guild_join(self, guild):
+	@commands.Cog.listener('on_guild_join')
+	async def scan_new_guilds(self, guild):
 		if guild.owner_id in self.config.users:
-			await guild.leave()
 			ss = get(self.bot.guilds, id=self.config.serverid)
 			log = get(ss.text_channels, id=self.config.log)
-			await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server_Name:** {guild.name}, **Server_ID:** {guild.id}")
+			owner = await self.bot.fetch_user(guild.owner_id)
+			await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server:** {guild.name}(`{guild.id}`), **Owner:** `{owner.name}#{owner.discriminator}`(`{owner.id}`)")
+			await guild.leave()
 		else:
 			return
 
 	@commands.command()
 	@commands.is_owner()
-	async def run_ads(self, ctx):
-		await ctx.send("Running ADS Script.")
+	async def scan(self, ctx):
+		message = await ctx.send(f"Scanning Guilds (0/{len(self.bot.guilds)})")
 		blocked_users = self.config.users
+		count = 0
 		for guild in self.bot.guilds:
+			count = count + 1
+			await message.edit(f"Scanning Guilds ({count}/{len(self.bot.guilds)})")
 			if guild.owner_id in blocked_users:
-				await guild.leave()
 				ss = get(self.bot.guilds, id=self.config.serverid)
 				log = get(ss.text_channels, id=self.config.log)
-				await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server_Name:** {guild.name}, **Server_ID:** {guild.id}")
-		await ctx.send("ADS Script Ended.")
+				owner = await self.bot.fetch_user(guild.owner_id)
+				await log.send(f":no_entry_sign: Blocked Server by **Anti-Dummy Server** Module, **Server:** {guild.name}(`{guild.id}`), **Owner:** `{owner.name}#{owner.discriminator}`(`{owner.id}`)")
+				await guild.leave()
+		await message.edit(f"Scanned all guilds.")
 
 def setup(bot):
 	bot.add_cog(ADS_Plugin(bot))
