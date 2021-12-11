@@ -3,11 +3,11 @@ This is Project ADS to prevent people from dummy servering your bot, We would li
 
 # Dependencies
 
-**Unix:**
+### Unix:
 ```sh
 $ python3 -m pip install -U -r requirements.txt
 ```
-**Windows:**
+### Windows:
 ```sh
 pip install -U -r requirements.txt
 ```
